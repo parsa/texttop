@@ -1,4 +1,4 @@
-#Texttop
+# Texttop
 **A fully interactive X Linux desktop rendered to TTY and streamed over SSH**
 
 or Firefox in your terminal 😲
@@ -7,7 +7,7 @@ or Firefox in your terminal 😲
 
 This [Youtube video](https://www.youtube.com/watch?v=TE_D_fx_ut8) gives a more faithful rendition of the experience.
 
-##Why?
+## Why?
 I'm travelling around the world and sometimes I don't have very good Internet. If all I have is a 3kbps connection
 tethered from my phone then it's good to SSH into my server and browse the web through [elinks](http://www.xteddy.org/elinks/).
 That way my _server_ downloads the web pages and uses the limited bandwidth of my SSH connection to display the result. But
@@ -19,27 +19,27 @@ Internet. Texttop uses MoSH to further reduce the bandwidth and stability requir
 automatic reconnection of dropped connections and diff-only screen updates. Also, other than SSH or MoSH, Texttop doesn't
 require a client like VNC. But of course another big reason for Texttop is that it's just very cool geekery.
 
-##Quickstart
+## Quickstart
 If you just want to have a play on your local machine:
-```
+```bash
 docker run --rm -it tombh/texttop sh
 ./run.sh
 ```
 
-##Installation
+## Installation
 You can either pull from the Docker Registry:
 `docker pull tombh/texttop`
 or, build yourself:
-```
+```bash
 git clone https://github.com/tombh/texttop.git
 cd texttop
 docker build -t texttop .
 ```
 The docker image is only ~275MB.
 
-##Usage
+## Usage
 On your remote server (this will pull the docker image the first time you issue it):
-```
+```bash
 docker run -d \
   -p 7777:7777 -p 60000-60020:60000-60020/udp \
   -v ${HOME}/.ssh:/root/.ssh:ro \
@@ -49,7 +49,7 @@ Note that this assumes you already have SSH setup on your server and that you ha
 logins work fine too. The `60000-60020` port range is for MoSH.
 
 Then on your local machine:
-```
+```bash
 mosh user@yourserver:7777
 ./run.sh
 ```
@@ -62,7 +62,7 @@ MoSH is available through most system package managers. SSH can be used exactly 
 
 If MoSH or SSH become unresponsive you can exit MoSH with `CTRL+^ .` or SSH with `ENTER ~ .`
 
-##Interaction
+## Interaction
   * `CTRL + mousewheel` to zoom
   * `CTRL + click/drag` to pan
 
@@ -89,10 +89,10 @@ docker run -d \
   tombh/texttop
 ```
 
-##Known Issues
+## Known Issues
 The Docker Hub version is built against Intel CPU architectures, this causes hiptext to fail on AMD chips. In which
 case you will need to build texttop yourself:
-```
+```bash
 git clone https://github.com/tombh/texttop.git
 cd texttop
 docker build -t texttop .
@@ -107,8 +107,8 @@ docker build -t texttop .
   * xterm: `CTRL+click/drag` is intercepted by the GUI menu
   * rxvt: rendering issues
 
-##Contributions
+## Contributions
 Yes please.
 
-##License
+## License
 GNU General Public License v3.0
